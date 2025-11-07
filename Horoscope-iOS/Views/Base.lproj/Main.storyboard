@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qa7-AZ-C1c">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
@@ -8,16 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Zodiac-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Horoscope_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Horoscope_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" estimatedRowHeight="94" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QmV-jg-ilJ">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="172" width="393" height="612"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HoroscopeCell" rowHeight="94" id="kGm-NB-RA6" customClass="HoroscopeViewCell" customModule="Horoscope_iOS" customModuleProvider="target">
@@ -51,6 +51,7 @@
                                             <outlet property="datesLabel" destination="BGs-f5-2Nh" id="AXQ-ec-ifQ"/>
                                             <outlet property="nameLabel" destination="k6M-4z-aC9" id="OCb-hf-ez4"/>
                                             <outlet property="signImageView" destination="F2k-ja-a0c" id="9wj-Fw-eci"/>
+                                            <segue destination="IPH-hV-BkN" kind="show" identifier="NavigateToDetail" id="aBH-cL-QCN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -65,16 +66,74 @@
                             <constraint firstItem="QmV-jg-ilJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ynw-eo-bVD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Zodiac" id="Bic-tP-qFb">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gearshape" catalog="system" id="bOX-qc-Nq2">
+                            <connections>
+                                <segue destination="ugA-0C-XhZ" kind="show" identifier="NavigateToSettings" id="B9V-Ux-Zme"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="QmV-jg-ilJ" id="Nq3-aG-ze0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1064.885496183206" y="130.98591549295776"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="sT9-al-R3w">
+            <objects>
+                <viewController id="IPH-hV-BkN" customClass="DetailViewController" customModule="Horoscope_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pS9-8d-Bzi">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="O8b-3p-V0r"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="fKe-RF-hoX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Zu-kU-21b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1999.2366412213739" y="130.98591549295776"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="yUX-Cq-4CK">
+            <objects>
+                <viewController id="ugA-0C-XhZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="egF-5p-20S">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ekA-p0-Pwd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="ZVI-B6-mt5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZw-6r-Yhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="-589"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kyt-Do-rxc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qa7-AZ-C1c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sKD-vp-IUJ">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1vZ-Ci-NEp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xa2-dr-qFS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

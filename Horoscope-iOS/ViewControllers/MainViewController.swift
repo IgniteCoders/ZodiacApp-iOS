@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +31,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NavigateToDetail" {
+            let detailVC = segue.destination as! DetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            let horoscope = horoscopeList[indexPath.row]
+            detailVC.horoscope = horoscope
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else if segue.identifier == "NavigateToSettings" {
+            
+        }
+    }
 }
 
