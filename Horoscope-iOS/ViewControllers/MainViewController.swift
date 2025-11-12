@@ -7,15 +7,25 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+    
+    // MARK: Outlets
 
     @IBOutlet weak var tableView: UITableView!
     
-    let horoscopeList: [Horoscope] = Horoscope.getAll()
+    // MARK: Properties
+    
+    var horoscopeList: [Horoscope] = Horoscope.getAll()
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        /*let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController*/
         
         tableView.dataSource = self
     }
@@ -30,6 +40,19 @@ class MainViewController: UIViewController, UITableViewDataSource {
         super.viewDidAppear(animated)
     }*/
     
+    // MARK: SearchBar delegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            horoscopeList = Horoscope.getAll()
+        } else {
+            horoscopeList = Horoscope.getAll().filter { $0.name.range(of: searchText, options: .caseInsensitive) != nil }
+        }
+        tableView.reloadData()
+    }
+    
+    // MARK: TableView dataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return horoscopeList.count
     }
@@ -40,6 +63,8 @@ class MainViewController: UIViewController, UITableViewDataSource {
         cell.render(horoscope)
         return cell
     }
+    
+    // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NavigateToDetail" {
